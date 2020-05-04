@@ -8,6 +8,12 @@ public class CharacterController : MonoBehaviour
     [SerializeField] Vector3 movementForce;
     public bool jumping = false;
     public bool falling = false;
+    public bool npcZone = false;
+    public bool canMove = true;
+    public bool talking = false;
+    public GameObject nPC;
+    private float timePressed = 0;
+    [SerializeField] float nextTime =1f;
     /*public float speed = 0f;
     [SerializeField] float maxSpeed = 10;
     [SerializeField] float acceleration = 10;*/
@@ -20,50 +26,86 @@ public class CharacterController : MonoBehaviour
 
     // Update is called once per frame
 
+    private void Update()
+    {
+        if (Input.GetKey("z"))
+        {
+            if (npcZone == true) //NPC INTERACTION
+            {
+                if (talking == false) //INITIAL TRIGGER
+                {
+                    talking = true;
+                    nPC.GetComponent<DialgoueTrigger>().TriggerDialogue();
+                    timePressed = Time.time;
+                }
+                else if (talking == true && Time.time > timePressed + nextTime)
+                {
+                    timePressed = Time.time;
+                    FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                }
+            }
+            //let player move again
+            //actual dialogue boxes
+            //letters one by one
+            //loop dialogue
+            //
+
+        }
+    }
 
     void FixedUpdate()
     {
         if (Input.GetKey("z"))
         {
-            this.GetComponent<Rigidbody>().AddForce(0, gravity.y, 0, ForceMode.Impulse);
-            jumping = true;
+            if (npcZone == false)
+            {
+                this.GetComponent<Rigidbody>().AddForce(0, gravity.y, 0, ForceMode.Impulse);
+                jumping = true;
+            }
+            
         }
         else
         {
             jumping = false;
         }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            this.GetComponent<Rigidbody>().AddForce(movementForce.x * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
-        }
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            this.GetComponent<Rigidbody>().AddForce(-movementForce.x * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
-        }
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            this.GetComponent<Rigidbody>().AddForce(0, 0, movementForce.z * Time.deltaTime, ForceMode.VelocityChange);
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            this.GetComponent<Rigidbody>().AddForce(0, 0, -movementForce.z * Time.deltaTime, ForceMode.VelocityChange);
-        }
-        if (Input.GetKey("x") /*&& speed > maxSpeed*/)
-        {
-            falling = true;
-            // speed = speed - acceleration * Time.deltaTime;
 
-            this.GetComponent<Rigidbody>().AddForce(0, gravity.x /*+ speed * Time.deltaTime*/ , 0, ForceMode.Acceleration);
-           
-        }
-        else if (Input.GetKeyUp("x"))
+        if (talking == false)
         {
-            falling = false;
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                this.GetComponent<Rigidbody>().AddForce(movementForce.x * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+            }
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                this.GetComponent<Rigidbody>().AddForce(-movementForce.x * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+            }
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                this.GetComponent<Rigidbody>().AddForce(0, 0, movementForce.z * Time.deltaTime, ForceMode.VelocityChange);
+            }
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                this.GetComponent<Rigidbody>().AddForce(0, 0, -movementForce.z * Time.deltaTime, ForceMode.VelocityChange);
+            }
+            if (Input.GetKey("x") /*&& speed > maxSpeed*/)
+            {
+                falling = true;
+                // speed = speed - acceleration * Time.deltaTime;
+
+                this.GetComponent<Rigidbody>().AddForce(0, gravity.x /*+ speed * Time.deltaTime*/ , 0, ForceMode.Acceleration);
+
+            }
+            else if (Input.GetKeyUp("x"))
+            {
+                falling = false;
+            }
+            //else if (Input.GetKeyUp("x"))
+            //{
+            //    speed = 0;
+            // }
         }
-        //else if (Input.GetKeyUp("x"))
-        //{
-        //    speed = 0;
-        // }
+
+
     }
 
     
