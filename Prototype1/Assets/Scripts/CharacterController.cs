@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    [SerializeField] float jumpForce;
+    [SerializeField] Vector2 gravity;
     [SerializeField] Vector3 movementForce;
+    public bool jumping = false;
+    public bool falling = false;
+    /*public float speed = 0f;
+    [SerializeField] float maxSpeed = 10;
+    [SerializeField] float acceleration = 10;*/
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,11 +19,18 @@ public class CharacterController : MonoBehaviour
     }
 
     // Update is called once per frame
+
+
     void FixedUpdate()
     {
         if (Input.GetKey("z"))
         {
-            this.GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
+            this.GetComponent<Rigidbody>().AddForce(0, gravity.y, 0, ForceMode.Impulse);
+            jumping = true;
+        }
+        else
+        {
+            jumping = false;
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
@@ -35,6 +48,22 @@ public class CharacterController : MonoBehaviour
         {
             this.GetComponent<Rigidbody>().AddForce(0, 0, -movementForce.z * Time.deltaTime, ForceMode.VelocityChange);
         }
+        if (Input.GetKey("x") /*&& speed > maxSpeed*/)
+        {
+            falling = true;
+            // speed = speed - acceleration * Time.deltaTime;
+
+            this.GetComponent<Rigidbody>().AddForce(0, gravity.x /*+ speed * Time.deltaTime*/ , 0, ForceMode.Acceleration);
+           
+        }
+        else if (Input.GetKeyUp("x"))
+        {
+            falling = false;
+        }
+        //else if (Input.GetKeyUp("x"))
+        //{
+        //    speed = 0;
+        // }
     }
 
     
