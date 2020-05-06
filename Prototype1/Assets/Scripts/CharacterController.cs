@@ -12,7 +12,7 @@ public class CharacterController : MonoBehaviour
     public bool canMove = true;
     public bool talking = false;
     public GameObject nPC;
-    private float timePressed = 0;
+    public float timePressed = 0;
     [SerializeField] float nextTime =1f;
     /*public float speed = 0f;
     [SerializeField] float maxSpeed = 10;
@@ -30,12 +30,13 @@ public class CharacterController : MonoBehaviour
     {
         if (Input.GetKey("z"))
         {
-            if (npcZone == true) //NPC INTERACTION
+            if (npcZone == true ) //NPC INTERACTION
             {
-                if (talking == false) //INITIAL TRIGGER
+                if (talking == false && timePressed == 0) //INITIAL TRIGGER
                 {
                     talking = true;
-                    nPC.GetComponent<DialgoueTrigger>().TriggerDialogue();
+                    //nPC.GetComponent<DialgoueTrigger>().TriggerDialogue();
+                    nPC.GetComponent<NPCManager>().Talk();
                     timePressed = Time.time;
                 }
                 else if (talking == true && Time.time > timePressed + nextTime)
@@ -44,33 +45,31 @@ public class CharacterController : MonoBehaviour
                     FindObjectOfType<DialogueManager>().DisplayNextSentence();
                 }
             }
-            //let player move again
-            //actual dialogue boxes
-            //letters one by one
+            //new dialogue
             //loop dialogue
-            //
 
         }
     }
 
     void FixedUpdate()
     {
-        if (Input.GetKey("z"))
-        {
-            if (npcZone == false)
-            {
-                this.GetComponent<Rigidbody>().AddForce(0, gravity.y, 0, ForceMode.Impulse);
-                jumping = true;
-            }
-            
-        }
-        else
-        {
-            jumping = false;
-        }
+        
 
         if (talking == false)
         {
+            if (Input.GetKey("z"))
+            {
+                
+                 
+                this.GetComponent<Rigidbody>().AddForce(0, gravity.y, 0, ForceMode.Impulse);
+                jumping = true;
+                 
+
+            }
+            else
+            {
+                jumping = false;
+            }
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 this.GetComponent<Rigidbody>().AddForce(movementForce.x * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
