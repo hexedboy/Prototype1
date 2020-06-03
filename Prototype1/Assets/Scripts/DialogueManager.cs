@@ -10,12 +10,17 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] GameObject speechbubble;
     [SerializeField] Text dialogueText;
     [SerializeField] Text name;
+    private string npcName;
+    private string[] currentDialogue;
+    private string[] nextDialogue;
+    public int diaNum = 0;
     
     // Start is called before the first frame update
     void Start()
     {
         sentences = new Queue<string>();
     }
+
 
     public void StartDialogue(Dialogue dialogue)
     {
@@ -25,13 +30,55 @@ public class DialogueManager : MonoBehaviour
         name.text = dialogue.name;
         sentences.Clear();
 
-        foreach (string sentence in dialogue.sentences)
+
+        diaNum = dialogue.num;
+        if (diaNum == 0)
+        {
+            currentDialogue = dialogue.sentences;
+            nextDialogue = dialogue.sentences1;
+            if (nextDialogue.Length > 0)
+            {
+                dialogue.num++;
+            }
+        }
+        else if (diaNum == 1)
+        {
+            currentDialogue = dialogue.sentences1;
+            nextDialogue = dialogue.sentences2;
+            if (nextDialogue.Length >0)
+            {
+                dialogue.num++;
+            }
+            
+        }
+        else if (diaNum == 2)
+        {
+            currentDialogue = dialogue.sentences2;
+            nextDialogue = dialogue.sentences3;
+            if (nextDialogue.Length > 0)
+            {
+                dialogue.num++;
+            }
+        }
+        else if (diaNum == 3)
+        {
+            currentDialogue = dialogue.sentences3;
+        }
+
+        //check if option chosen
+        //if dianum == 4 then inc to 7
+        //check if option chosen
+        
+
+        foreach (string sentence in currentDialogue)
         {
             sentences.Enqueue(sentence);
         }
 
         DisplayNextSentence();
     }
+
+
 
     public void DisplayNextSentence()
     {
@@ -61,6 +108,15 @@ public class DialogueManager : MonoBehaviour
     private void EndDialogue()
     {
         Debug.Log("End of convo");
+        if (nextDialogue.Length == 0)
+        {
+            
+        }
+        else if (diaNum <3)
+        {
+            //diaNum++;
+        }
+        
         player.GetComponent<CharacterController>().talking = false;
         //player.GetComponent<CharacterController>().timePressed = 0;
         speechbubble.SetActive(false);
