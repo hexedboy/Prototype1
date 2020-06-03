@@ -9,6 +9,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
     [SerializeField] GameObject speechbubble;
     [SerializeField] Text dialogueText;
+    [SerializeField] Text name;
     
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("starting convo with" + dialogue.name);
 
         speechbubble.SetActive(true);
+        name.text = dialogue.name;
         sentences.Clear();
 
         foreach (string sentence in dialogue.sentences)

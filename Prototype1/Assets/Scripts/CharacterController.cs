@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterController : MonoBehaviour
 {
@@ -8,12 +9,15 @@ public class CharacterController : MonoBehaviour
     [SerializeField] Vector3 movementForce;
     public bool jumping = false;
     public bool falling = false;
+    public bool left = false;
+    public bool right = false;
     public bool npcZone = false;
     public bool canMove = true;
     public bool talking = false;
     public GameObject nPC;
     public float timePressed = 0;
     [SerializeField] float nextTime =1f;
+    [SerializeField] CameraFollow cam;
     /*public float speed = 0f;
     [SerializeField] float maxSpeed = 10;
     [SerializeField] float acceleration = 10;*/
@@ -53,7 +57,17 @@ public class CharacterController : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+
+        if (Input.GetKey("escape"))
+        {
+            Debug.Log("quit");
+            Application.Quit();
+        }
+        if (Input.GetKey("r"))
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
+
 
         if (talking == false)
         {
@@ -69,14 +83,35 @@ public class CharacterController : MonoBehaviour
             else
             {
                 jumping = false;
+
             }
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 this.GetComponent<Rigidbody>().AddForce(movementForce.x * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+                right = true;
+            }
+            else if (Input.GetKeyUp(KeyCode.RightArrow))
+            {
+                if (right == true)
+                {
+                    right = false;
+                    cam.frameboi = 0;
+                }
+                
             }
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 this.GetComponent<Rigidbody>().AddForce(-movementForce.x * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+                left = true;
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftArrow))
+            {
+                if (left == true)
+                {
+                    left = false;
+                    cam.frameboi = 0;
+                }
+
             }
             if (Input.GetKey(KeyCode.UpArrow))
             {
