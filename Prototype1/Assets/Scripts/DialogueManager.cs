@@ -10,7 +10,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] GameObject speechbubble;
     [SerializeField] Text dialogueText;
     [SerializeField] Text name;
-    private string npcName;
+    //private GameObject nPC;
     private string[] currentDialogue;
     private string[] nextDialogue;
     public int diaNum = 0;
@@ -20,9 +20,10 @@ public class DialogueManager : MonoBehaviour
     {
         sentences = new Queue<string>();
     }
+    
+    
 
-
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(Dialogue dialogue, GameObject npc)
     {
         Debug.Log("starting convo with" + dialogue.name);
 
@@ -30,45 +31,154 @@ public class DialogueManager : MonoBehaviour
         name.text = dialogue.name;
         sentences.Clear();
 
+        //nPC = npc;
 
-        diaNum = dialogue.num;
-        if (diaNum == 0)
+        //diaNum = dialogue.num;
+
+        //if (diaNum == 0)
+        if (npc.GetComponent<NPCManager>().diaNum == 0)
         {
             currentDialogue = dialogue.sentences;
             nextDialogue = dialogue.sentences1;
+
             if (nextDialogue.Length > 0)
             {
-                dialogue.num++;
+                //dialogue.num++;
+                GameObject.Find(npc.name).GetComponent<NPCManager>().diaNum++;
             }
         }
-        else if (diaNum == 1)
+        else if (npc.GetComponent<NPCManager>().diaNum == 1)
         {
             currentDialogue = dialogue.sentences1;
             nextDialogue = dialogue.sentences2;
             if (nextDialogue.Length >0)
             {
-                dialogue.num++;
+                //dialogue.num++;
+                GameObject.Find(npc.name).GetComponent<NPCManager>().diaNum++;
             }
             
         }
-        else if (diaNum == 2)
+        else if (npc.GetComponent<NPCManager>().diaNum == 2)
         {
             currentDialogue = dialogue.sentences2;
             nextDialogue = dialogue.sentences3;
             if (nextDialogue.Length > 0)
             {
-                dialogue.num++;
+                //dialogue.num++;
+                GameObject.Find(npc.name).GetComponent<NPCManager>().diaNum++;
             }
         }
-        else if (diaNum == 3)
+        else if (npc.GetComponent<NPCManager>().diaNum == 3)                        //NORMAL TEXT ENDS HERE
         {
             currentDialogue = dialogue.sentences3;
         }
-
+        else if (npc.GetComponent<NPCManager>().diaNum == 4)                        //OPTION 1 STARTS HERE
+        {
+            currentDialogue = dialogue.sentences4;
+            nextDialogue = dialogue.sentences5;
+            if (nextDialogue.Length > 0)
+            {
+                //dialogue.num++;
+                GameObject.Find(npc.name).GetComponent<NPCManager>().diaNum++;
+            }
+        }
+        else if (npc.GetComponent<NPCManager>().diaNum == 5)
+        {
+            currentDialogue = dialogue.sentences5;
+            nextDialogue = dialogue.sentences6;
+            if (nextDialogue.Length > 0)
+            {
+                //dialogue.num++;
+                GameObject.Find(npc.name).GetComponent<NPCManager>().diaNum++;
+            }
+        }
+        else if (npc.GetComponent<NPCManager>().diaNum == 6)
+        {
+            currentDialogue = dialogue.sentences6;
+            nextDialogue = dialogue.sentences7;
+            if (nextDialogue.Length > 0)
+            {
+                //dialogue.num++;
+                GameObject.Find(npc.name).GetComponent<NPCManager>().diaNum++;
+            }
+        }
+        else if (npc.GetComponent<NPCManager>().diaNum == 7)                    //OPTION 1 ENDS HERE
+        {
+            currentDialogue = dialogue.sentences7;
+            
+        }
+        else if (npc.GetComponent<NPCManager>().diaNum == 8)                //OPTION 2 STARTS HERE
+        {
+            currentDialogue = dialogue.sentences8;
+            nextDialogue = dialogue.sentences9;
+            if (nextDialogue.Length > 0)
+            {
+                //dialogue.num++;
+                GameObject.Find(npc.name).GetComponent<NPCManager>().diaNum++;
+            }
+        }
+        else if (npc.GetComponent<NPCManager>().diaNum == 9)
+        {
+            currentDialogue = dialogue.sentences9;
+            nextDialogue = dialogue.sentences10;
+            if (nextDialogue.Length > 0)
+            {
+                //dialogue.num++;
+                GameObject.Find(npc.name).GetComponent<NPCManager>().diaNum++;
+            }
+        }
+        else if (npc.GetComponent<NPCManager>().diaNum == 10)
+        {
+            currentDialogue = dialogue.sentences10;
+            nextDialogue = dialogue.sentences11;
+            if (nextDialogue.Length > 0)
+            {
+                //dialogue.num++;
+                GameObject.Find(npc.name).GetComponent<NPCManager>().diaNum++;
+            }
+        }
+        else if (npc.GetComponent<NPCManager>().diaNum == 11)                 //OPTION 2 ENDS HERE
+        {
+            currentDialogue = dialogue.sentences11;
+        }
+        else if (npc.GetComponent<NPCManager>().diaNum == 12)               //OPTION 3 STARTS HERE
+        {
+            currentDialogue = dialogue.sentences12;
+            nextDialogue = dialogue.sentences13;
+            if (nextDialogue.Length > 0)
+            {
+                //dialogue.num++;
+                GameObject.Find(npc.name).GetComponent<NPCManager>().diaNum++;
+            }
+        }
+        else if (npc.GetComponent<NPCManager>().diaNum == 13)
+        {
+            currentDialogue = dialogue.sentences13;
+            nextDialogue = dialogue.sentences14;
+            if (nextDialogue.Length > 0)
+            {
+                //dialogue.num++;
+                GameObject.Find(npc.name).GetComponent<NPCManager>().diaNum++;
+            }
+        }
+        else if (npc.GetComponent<NPCManager>().diaNum == 14)
+        {
+            currentDialogue = dialogue.sentences14;
+            nextDialogue = dialogue.sentences15;
+            if (nextDialogue.Length > 0)
+            {
+                //dialogue.num++;
+                GameObject.Find(npc.name).GetComponent<NPCManager>().diaNum++;
+            }
+        }
+        else if (npc.GetComponent<NPCManager>().diaNum == 15)                       //OPTION 3 ENDS HERE
+        {
+            currentDialogue = dialogue.sentences15;
+        }
         //check if option chosen
         //if dianum == 4 then inc to 7
         //check if option chosen
-        
+
 
         foreach (string sentence in currentDialogue)
         {
@@ -110,7 +220,7 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("End of convo");
         if (nextDialogue.Length == 0)
         {
-            
+            //do nothing i guess
         }
         else if (diaNum <3)
         {

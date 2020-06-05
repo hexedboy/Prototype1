@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable] //so we see the class in the inspector and edit it
-public class Dialogue 
+public class Dialogue
 {
     public string name;
     public int num;
