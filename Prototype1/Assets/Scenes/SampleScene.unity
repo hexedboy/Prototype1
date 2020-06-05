@@ -3330,6 +3330,7 @@ GameObject:
   - component: {fileID: 709475024}
   - component: {fileID: 709475023}
   - component: {fileID: 709475022}
+  - component: {fileID: 709475025}
   m_Layer: 5
   m_Name: Option2
   m_TagString: Untagged
@@ -3344,17 +3345,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709475020}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 882726231}
   m_Father: {fileID: 1187156744}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 301, y: 0}
+  m_AnchoredPosition: {x: 278.99994, y: 15.999996}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &709475022
@@ -3399,7 +3400,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 709475023}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 709475025}
+        m_MethodName: SetOption
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &709475023
@@ -3440,6 +3452,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709475020}
   m_CullTransparentMesh: 0
+--- !u!114 &709475025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709475020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59417ddcda196da4aa8077f0d8245959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nPC: {fileID: 0}
+  player: {fileID: 0}
+  btnsPanel: {fileID: 1223411079}
 --- !u!1 &726550387
 GameObject:
   m_ObjectHideFlags: 0
@@ -3467,17 +3494,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726550387}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 81172093}
   m_Father: {fileID: 1187156744}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 301, y: 36}
+  m_AnchoredPosition: {x: 278.99997, y: 52.000053}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &726550389
@@ -3586,7 +3613,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59417ddcda196da4aa8077f0d8245959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nPC: 
+  nPC: {fileID: 0}
+  player: {fileID: 0}
+  btnsPanel: {fileID: 1223411079}
 --- !u!1 &745648840
 GameObject:
   m_ObjectHideFlags: 0
@@ -4104,6 +4133,10 @@ MonoBehaviour:
   speechbubble: {fileID: 558702524}
   dialogueText: {fileID: 1138388170}
   name: {fileID: 1211406253}
+  optBut1: {fileID: 726550389}
+  optBut2: {fileID: 709475022}
+  optBut3: {fileID: 1294221422}
+  btnsPanel: {fileID: 1223411076}
   diaNum: 0
 --- !u!4 &925945486
 Transform:
@@ -5223,6 +5256,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 558702525}
+  - {fileID: 1223411079}
   - {fileID: 726550388}
   - {fileID: 709475021}
   - {fileID: 1294221421}
@@ -5412,6 +5446,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1211406251}
   m_CullTransparentMesh: 0
+--- !u!1 &1223411076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1223411079}
+  - component: {fileID: 1223411078}
+  - component: {fileID: 1223411077}
+  m_Layer: 5
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1223411077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223411076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1223411078
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223411076}
+  m_CullTransparentMesh: 0
+--- !u!224 &1223411079
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223411076}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1187156744}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 273, y: 16}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1229800328
 GameObject:
   m_ObjectHideFlags: 0
@@ -5734,6 +5843,7 @@ GameObject:
   - component: {fileID: 1294221424}
   - component: {fileID: 1294221423}
   - component: {fileID: 1294221422}
+  - component: {fileID: 1294221425}
   m_Layer: 5
   m_Name: Option3
   m_TagString: Untagged
@@ -5748,17 +5858,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1294221420}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 531518823}
   m_Father: {fileID: 1187156744}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 301, y: -39}
+  m_AnchoredPosition: {x: 278.99994, y: -22.999992}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1294221422
@@ -5803,7 +5913,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1294221423}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1294221425}
+        m_MethodName: SetOption
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1294221423
@@ -5844,6 +5965,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1294221420}
   m_CullTransparentMesh: 0
+--- !u!114 &1294221425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294221420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59417ddcda196da4aa8077f0d8245959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nPC: {fileID: 0}
+  player: {fileID: 0}
+  btnsPanel: {fileID: 1223411079}
 --- !u!1 &1317201683
 GameObject:
   m_ObjectHideFlags: 0
@@ -9486,6 +9622,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9152025270620123806, guid: 07bfcefb484764f4785b9a3c4bf9e331,
         type: 3}
+      propertyPath: dialogue.options.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152025270620123806, guid: 07bfcefb484764f4785b9a3c4bf9e331,
+        type: 3}
+      propertyPath: dialogue.sentences8.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152025270620123806, guid: 07bfcefb484764f4785b9a3c4bf9e331,
+        type: 3}
+      propertyPath: dialogue.sentences12.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152025270620123806, guid: 07bfcefb484764f4785b9a3c4bf9e331,
+        type: 3}
+      propertyPath: dialogue.sentences13.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152025270620123806, guid: 07bfcefb484764f4785b9a3c4bf9e331,
+        type: 3}
+      propertyPath: dialogue.sentences14.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152025270620123806, guid: 07bfcefb484764f4785b9a3c4bf9e331,
+        type: 3}
       propertyPath: dialogue.name
       value: MICKY
       objectReference: {fileID: 0}
@@ -9545,6 +9706,71 @@ PrefabInstance:
       propertyPath: dialogue.sentences5.Array.data[0]
       value: This is sentence 2 of option 1 text!
       objectReference: {fileID: 0}
+    - target: {fileID: 9152025270620123806, guid: 07bfcefb484764f4785b9a3c4bf9e331,
+        type: 3}
+      propertyPath: dialogue.options.Array.data[0]
+      value: Blah blah
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152025270620123806, guid: 07bfcefb484764f4785b9a3c4bf9e331,
+        type: 3}
+      propertyPath: dialogue.options.Array.data[1]
+      value: I know how this works!
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152025270620123806, guid: 07bfcefb484764f4785b9a3c4bf9e331,
+        type: 3}
+      propertyPath: dialogue.options.Array.data[2]
+      value: I'm sorry I spelt your name wrong
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152025270620123806, guid: 07bfcefb484764f4785b9a3c4bf9e331,
+        type: 3}
+      propertyPath: dialogue.sentences8.Array.data[0]
+      value: You Selected option 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152025270620123806, guid: 07bfcefb484764f4785b9a3c4bf9e331,
+        type: 3}
+      propertyPath: dialogue.sentences8.Array.data[1]
+      value: This is sentence 2 of option 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152025270620123806, guid: 07bfcefb484764f4785b9a3c4bf9e331,
+        type: 3}
+      propertyPath: dialogue.sentences12.Array.data[0]
+      value: This is option 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152025270620123806, guid: 07bfcefb484764f4785b9a3c4bf9e331,
+        type: 3}
+      propertyPath: dialogue.sentences12.Array.data[1]
+      value: Yayayay
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152025270620123806, guid: 07bfcefb484764f4785b9a3c4bf9e331,
+        type: 3}
+      propertyPath: dialogue.sentences12.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152025270620123806, guid: 07bfcefb484764f4785b9a3c4bf9e331,
+        type: 3}
+      propertyPath: dialogue.sentences13.Array.data[0]
+      value: Second set of option 3's sentences
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152025270620123806, guid: 07bfcefb484764f4785b9a3c4bf9e331,
+        type: 3}
+      propertyPath: dialogue.sentences13.Array.data[1]
+      value: Yay
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152025270620123806, guid: 07bfcefb484764f4785b9a3c4bf9e331,
+        type: 3}
+      propertyPath: dialogue.sentences14.Array.data[0]
+      value: Third set of Option 3's sentences
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152025270620123806, guid: 07bfcefb484764f4785b9a3c4bf9e331,
+        type: 3}
+      propertyPath: dialogue.sentences14.Array.data[1]
+      value: Yayay
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152025270620123806, guid: 07bfcefb484764f4785b9a3c4bf9e331,
+        type: 3}
+      propertyPath: dialogue.sentences14.Array.data[2]
+      value: ya
+      objectReference: {fileID: 0}
     - target: {fileID: 9152025270620123792, guid: 07bfcefb484764f4785b9a3c4bf9e331,
         type: 3}
       propertyPath: optBut1
@@ -9560,5 +9786,10 @@ PrefabInstance:
       propertyPath: optBut3
       value: 
       objectReference: {fileID: 1294221420}
+    - target: {fileID: 9152025270620123792, guid: 07bfcefb484764f4785b9a3c4bf9e331,
+        type: 3}
+      propertyPath: options
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07bfcefb484764f4785b9a3c4bf9e331, type: 3}

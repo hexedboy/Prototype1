@@ -32,9 +32,10 @@ public class CharacterController : MonoBehaviour
 
     private void Update()
     {
+        
         if (Input.GetKey("z"))
         {
-            if (npcZone == true ) //NPC INTERACTION
+            if (npcZone == true && nPC.GetComponent<NPCManager>().optLock == false ) //NPC INTERACTION
             {
                 if (talking == false && timePressed == 0) //INITIAL TRIGGER
                 {
@@ -49,8 +50,8 @@ public class CharacterController : MonoBehaviour
                     FindObjectOfType<DialogueManager>().DisplayNextSentence();
                 }
             }
-            //new dialogue
-            //loop dialogue
+            
+            Debug.Log(timePressed);
 
         }
     }

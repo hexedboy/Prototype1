@@ -9,13 +9,15 @@ public class NPCManager : MonoBehaviour
     [SerializeField] GameObject optBut2;
    [SerializeField] GameObject optBut3;
     public int diaNum;
+    public bool options = false;
+    public bool optLock = false;
     
     // Start is called before the first frame update
     void Start()
     {
-        optBut1 = GameObject.Find("Option1");
-        optBut2 = GameObject.Find("Option2");
-        optBut3 = GameObject.Find("Option3");
+        //optBut1 = GameObject.Find("Option1");
+        //optBut2 = GameObject.Find("Option2");
+        //optBut3 = GameObject.Find("Option3");
     }
 
     // Update is called once per frame
@@ -39,6 +41,8 @@ public class NPCManager : MonoBehaviour
         collider.GetComponent<CharacterController>().nPC = this.gameObject;
 
         optBut1.GetComponent<OptionClick>().nPC = this.gameObject;
+        optBut2.GetComponent<OptionClick>().nPC = this.gameObject;
+        optBut3.GetComponent<OptionClick>().nPC = this.gameObject;
        
 
        

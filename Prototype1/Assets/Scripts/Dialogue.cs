@@ -6,9 +6,8 @@ using UnityEngine;
 public class Dialogue
 {
     public string name;
-    public int num;
-    public bool optionsPresent = false; //can switch on and off
-    public int optionNum = -1; //can reset
+    //public int num;
+    //public int optionNum = -1; //can reset
 
     [TextArea(3,10)]
     public string[] sentences;

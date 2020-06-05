@@ -10,7 +10,12 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] GameObject speechbubble;
     [SerializeField] Text dialogueText;
     [SerializeField] Text name;
-    //private GameObject nPC;
+    [SerializeField] Button optBut1;
+    [SerializeField] Button optBut2;
+    [SerializeField] Button optBut3;
+    [SerializeField] GameObject btnsPanel;
+    private bool opts = false;
+    private string npcName;
     private string[] currentDialogue;
     private string[] nextDialogue;
     public int diaNum = 0;
@@ -31,7 +36,15 @@ public class DialogueManager : MonoBehaviour
         name.text = dialogue.name;
         sentences.Clear();
 
-        //nPC = npc;
+        npcName = npc.name;
+
+        if (npc.GetComponent<NPCManager>().options == true)
+        {
+            optBut1.GetComponentInChildren<Text>().text = dialogue.options[0];
+            optBut2.GetComponentInChildren<Text>().text = dialogue.options[1];
+            optBut3.GetComponentInChildren<Text>().text = dialogue.options[2];
+            opts = true;
+        }
 
         //diaNum = dialogue.num;
 
@@ -175,9 +188,7 @@ public class DialogueManager : MonoBehaviour
         {
             currentDialogue = dialogue.sentences15;
         }
-        //check if option chosen
-        //if dianum == 4 then inc to 7
-        //check if option chosen
+        //CHECKING DIALOGUE
 
 
         foreach (string sentence in currentDialogue)
@@ -192,9 +203,21 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        if (sentences.Count == 0)
+        if (sentences.Count == 0 && GameObject.Find(npcName).GetComponent<NPCManager>().options == false)
         {
             EndDialogue();
+            return;
+        }
+        else if (sentences.Count == 0 && GameObject.Find(npcName).GetComponent<NPCManager>().options == true)
+        {
+            //opts = false;
+            //GameObject.Find(npcName).GetComponent<NPCManager>().options = false;
+            GameObject.Find(npcName).GetComponent<NPCManager>().optLock = true;
+
+            btnsPanel.SetActive(true);
+            optBut1.gameObject.SetActive(true);
+            optBut2.gameObject.SetActive(true);
+            optBut3.gameObject.SetActive(true);
             return;
         }
 
@@ -222,14 +245,14 @@ public class DialogueManager : MonoBehaviour
         {
             //do nothing i guess
         }
-        else if (diaNum <3)
-        {
-            //diaNum++;
-        }
-        
+
+       
         player.GetComponent<CharacterController>().talking = false;
         //player.GetComponent<CharacterController>().timePressed = 0;
         speechbubble.SetActive(false);
+        //optBut1.gameObject.SetActive(false);
+        //optBut2.gameObject.SetActive(false);
+       // optBut3.gameObject.SetActive(false);
     }
     
 }
