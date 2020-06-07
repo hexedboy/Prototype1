@@ -51,7 +51,7 @@ public class CharacterController : MonoBehaviour
                 }
             }
             
-            Debug.Log(timePressed);
+            //Debug.Log(timePressed);
 
         }
     }

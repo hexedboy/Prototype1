@@ -10,7 +10,9 @@ public class NPCManager : MonoBehaviour
    [SerializeField] GameObject optBut3;
     public int diaNum;
     public bool options = false;
-    public bool optLock = false;
+    public bool optLock = false; //don't mess with this
+    public bool item = false;
+   // public bool hasFriend = false;
     
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,12 @@ public class NPCManager : MonoBehaviour
     {
         this.GetComponent<DialgoueTrigger>().TriggerDialogue(this.gameObject);
         talkUI.SetActive(false);
+
+        //if NPC is item or event
+        if (item == true)
+        {
+            this.GetComponent<ItemHolder>().TriggerFriend();
+        }
     }
 
    

@@ -18,7 +18,9 @@ public class DialogueManager : MonoBehaviour
     private string npcName;
     private string[] currentDialogue;
     private string[] nextDialogue;
-    public int diaNum = 0;
+    public int sentCount = 0;
+    public string npcCharName;
+    //public int diaNum = 0;
     
     // Start is called before the first frame update
     void Start()
@@ -32,18 +34,36 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("starting convo with" + dialogue.name);
 
+        //sentCount = 0;
         speechbubble.SetActive(true);
         name.text = dialogue.name;
         sentences.Clear();
+
+        npcCharName = dialogue.name;
 
         npcName = npc.name;
 
         if (npc.GetComponent<NPCManager>().options == true)
         {
-            optBut1.GetComponentInChildren<Text>().text = dialogue.options[0];
-            optBut2.GetComponentInChildren<Text>().text = dialogue.options[1];
-            optBut3.GetComponentInChildren<Text>().text = dialogue.options[2];
-            opts = true;
+            if (dialogue.options.Length == 1)
+            {
+                optBut1.GetComponentInChildren<Text>().text = dialogue.options[0];
+                
+            }
+            if (dialogue.options.Length == 2)
+            {
+                optBut1.GetComponentInChildren<Text>().text = dialogue.options[0];
+                optBut2.GetComponentInChildren<Text>().text = dialogue.options[1];
+                
+            }
+            if (dialogue.options.Length == 3)
+            {
+                optBut1.GetComponentInChildren<Text>().text = dialogue.options[0];
+                optBut2.GetComponentInChildren<Text>().text = dialogue.options[1];
+                optBut3.GetComponentInChildren<Text>().text = dialogue.options[2];
+            }
+            
+            //opts = true;
         }
 
         //diaNum = dialogue.num;
@@ -197,12 +217,18 @@ public class DialogueManager : MonoBehaviour
         }
 
         DisplayNextSentence();
+
     }
 
 
 
     public void DisplayNextSentence()
     {
+        // if (GameObject.Find(npcName).GetComponent<NPCManager>().hasFriend == true)
+       // {
+       //     GameObject.Find(npcName).GetComponentInChildren<FriendHolder>().TriggerFriend();
+       // }
+
         if (sentences.Count == 0 && GameObject.Find(npcName).GetComponent<NPCManager>().options == false)
         {
             EndDialogue();
@@ -221,11 +247,22 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+
         string sentence = sentences.Dequeue();
         //dialogueText.text = sentence;
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
         Debug.Log(sentence);
+
+        if (GameObject.Find(npcName).GetComponent<FriendManager>() == true)
+        {
+            sentCount++;
+            GameObject.Find(npcName).GetComponent<FriendManager>().ChangeName();
+        }
+        
+
+
+
     }
 
     IEnumerator TypeSentence(string sentence)
