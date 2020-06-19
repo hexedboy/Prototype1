@@ -38,6 +38,9 @@ public class DialogueManager : MonoBehaviour
         speechbubble.SetActive(true);
         name.text = dialogue.name;
         sentences.Clear();
+        optBut1.GetComponentInChildren<Text>().text = "";
+        optBut2.GetComponentInChildren<Text>().text = "";
+        optBut3.GetComponentInChildren<Text>().text = "";
 
         npcCharName = dialogue.name;
 
@@ -224,10 +227,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        // if (GameObject.Find(npcName).GetComponent<NPCManager>().hasFriend == true)
-       // {
-       //     GameObject.Find(npcName).GetComponentInChildren<FriendHolder>().TriggerFriend();
-       // }
+       
 
         if (sentences.Count == 0 && GameObject.Find(npcName).GetComponent<NPCManager>().options == false)
         {
@@ -241,9 +241,21 @@ public class DialogueManager : MonoBehaviour
             GameObject.Find(npcName).GetComponent<NPCManager>().optLock = true;
 
             btnsPanel.SetActive(true);
-            optBut1.gameObject.SetActive(true);
-            optBut2.gameObject.SetActive(true);
-            optBut3.gameObject.SetActive(true);
+            if (optBut1.GetComponentInChildren<Text>().text != "")
+            {
+                optBut1.gameObject.SetActive(true);
+            }
+            if (optBut2.GetComponentInChildren<Text>().text != "")
+            {
+                optBut2.gameObject.SetActive(true);
+            }
+            if (optBut3.GetComponentInChildren<Text>().text != "")
+            {
+                optBut3.gameObject.SetActive(true);
+            }
+
+
+                
             return;
         }
 
@@ -257,6 +269,7 @@ public class DialogueManager : MonoBehaviour
         if (GameObject.Find(npcName).GetComponent<FriendManager>() == true)
         {
             sentCount++;
+            //Debug.Log("sentup " + sentCount);
             GameObject.Find(npcName).GetComponent<FriendManager>().ChangeName();
         }
         
@@ -283,7 +296,12 @@ public class DialogueManager : MonoBehaviour
             //do nothing i guess
         }
 
-       
+        if (GameObject.Find(npcName).GetComponent<FriendManager>() == true)
+        {
+            sentCount = 0;
+            GameObject.Find(npcName).GetComponent<FriendManager>().count = 0;
+            //GameObject.Find(npcName).GetComponent<FriendManager>().NextSentence();
+        }
         player.GetComponent<CharacterController>().talking = false;
         //player.GetComponent<CharacterController>().timePressed = 0;
         speechbubble.SetActive(false);

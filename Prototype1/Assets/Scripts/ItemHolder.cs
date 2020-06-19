@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ItemHolder : MonoBehaviour
 {
-    private bool interacted = false;
-    [SerializeField] GameObject friend;
-    [SerializeField] int num;
+    public bool interacted = false;
+    [SerializeField] GameObject[] friend;
+    [SerializeField] int[] num;
     
     // Start is called before the first frame update
     void Start()
@@ -24,7 +24,13 @@ public class ItemHolder : MonoBehaviour
     {
         if (interacted == false)
         {
-            friend.GetComponent<NPCManager>().diaNum = num;
+            int numcount = 0;
+            foreach (GameObject frend in friend)
+            {
+                frend.GetComponent<NPCManager>().diaNum = num[numcount];
+                numcount++;
+            }
+            //friend.GetComponent<NPCManager>().diaNum = num;
             interacted = true;
         }
     }

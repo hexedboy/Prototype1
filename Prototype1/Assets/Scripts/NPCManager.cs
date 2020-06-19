@@ -36,7 +36,18 @@ public class NPCManager : MonoBehaviour
         //if NPC is item or event
         if (item == true)
         {
-            this.GetComponent<ItemHolder>().TriggerFriend();
+            if (this.GetComponent<QuestManager>() == true)
+            {
+                if (this.GetComponent<QuestManager>().questdone == true)
+                {
+                    this.GetComponent<ItemHolder>().TriggerFriend();
+                }
+            }
+            else
+            {
+                this.GetComponent<ItemHolder>().TriggerFriend();
+            }
+            
         }
     }
 

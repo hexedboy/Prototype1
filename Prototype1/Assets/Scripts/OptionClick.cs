@@ -26,8 +26,19 @@ public class OptionClick : MonoBehaviour
 
             btnsPanel.gameObject.SetActive(false);
             this.gameObject.SetActive(false);
-            GameObject.Find("Option2").SetActive(false);
-            GameObject.Find("Option3").SetActive(false);
+
+            if (GameObject.Find("Option2") == true)
+            {
+                GameObject.Find("Option2").SetActive(false);
+            }
+            if (GameObject.Find("Option3") == true)
+            {
+                GameObject.Find("Option3").SetActive(false);
+            }
+
+
+           // GameObject.Find("Option2").SetActive(false);
+            //GameObject.Find("Option3").SetActive(false);
             
             
         }
@@ -42,8 +53,17 @@ public class OptionClick : MonoBehaviour
 
             btnsPanel.gameObject.SetActive(false);
             this.gameObject.SetActive(false);
-            GameObject.Find("Option1").SetActive(false);
-            GameObject.Find("Option3").SetActive(false);
+
+            if (GameObject.Find("Option1") == true)
+            {
+                GameObject.Find("Option1").SetActive(false);
+            }
+            if (GameObject.Find("Option3") == true)
+            {
+                GameObject.Find("Option3").SetActive(false);
+            }
+
+            
         }
         else if (this.gameObject.name == "Option3")
         {
@@ -56,8 +76,18 @@ public class OptionClick : MonoBehaviour
 
             btnsPanel.gameObject.SetActive(false);
             this.gameObject.SetActive(false);
-            GameObject.Find("Option2").SetActive(false);
-            GameObject.Find("Option1").SetActive(false);
+
+            if (GameObject.Find("Option2") == true)
+            {
+                GameObject.Find("Option2").SetActive(false);
+            }
+            if (GameObject.Find("Option1") == true)
+            {
+                GameObject.Find("Option1").SetActive(false);
+            }
+
+           // GameObject.Find("Option2").SetActive(false);
+            //GameObject.Find("Option1").SetActive(false);
         }
     }
 

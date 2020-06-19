@@ -2,10 +2,15 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - CameraFollow
+    - CameraFollow2
     - CharacterController
     - DialgoueTrigger
     - DialogueManager
+    - FriendManager
+    - ItemHolder
     - NPCManager
+    - OptionClick
+    - QuestManager
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
@@ -24,6 +29,7 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
@@ -77,17 +83,29 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10262}
     - Class: 114
+      Script: {instanceID: 10628}
+    - Class: 114
       Script: {instanceID: 10844}
     - Class: 114
       Script: {instanceID: 10876}
     - Class: 114
-      Script: {instanceID: 11064}
+      Script: {instanceID: 10952}
     - Class: 114
-      Script: {instanceID: 11106}
+      Script: {instanceID: 11066}
     - Class: 114
-      Script: {instanceID: 11354}
+      Script: {instanceID: 11108}
     - Class: 114
-      Script: {instanceID: 11480}
+      Script: {instanceID: 11172}
+    - Class: 114
+      Script: {instanceID: 11358}
+    - Class: 114
+      Script: {instanceID: 11402}
+    - Class: 114
+      Script: {instanceID: 11486}
+    - Class: 114
+      Script: {instanceID: 11552}
+    - Class: 114
+      Script: {instanceID: 19558}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -139,7 +157,7 @@ ScriptsOnlyBuild:
     className: TMP_ScrollbarEventHandler
   - hash:
       serializedVersion: 2
-      Hash: cefaa6c58a8f7e3f78e20204937b9255
+      Hash: 126f60f8ed4ed98217e4a59b95263f13
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DialgoueTrigger
@@ -415,13 +433,19 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
+      Hash: 985e0029a763412b662fc5c34daa85aa
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ItemHolder
+  - hash:
+      serializedVersion: 2
       Hash: ee0cef6caaac8ae485bfa82f000f0f7b
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: cabdbaaca0fea0d9be8ecaeea379803b
+      Hash: c5a2f41ddcfa8bf8c2e47a72dcf92e45
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NPCManager
@@ -445,6 +469,12 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
+      Hash: 5c3a144acfde2fac0ef8d9a9498c06c4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: OptionClick
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -457,7 +487,7 @@ ScriptsOnlyBuild:
     className: TMP_StyleSheet
   - hash:
       serializedVersion: 2
-      Hash: de3e507225879b1cd5729a17c3e13a75
+      Hash: 2c5f691ac9dbeed1681c8594ab28d2c0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DialogueManager
@@ -473,6 +503,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_ColorGradient
+  - hash:
+      serializedVersion: 2
+      Hash: e91b68801d2bdd87f226b0dc0a1a7520
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CameraFollow2
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -547,11 +583,23 @@ ScriptsOnlyBuild:
     className: ToggleGroup
   - hash:
       serializedVersion: 2
+      Hash: af906c631d9660303fe512b3ca63c107
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FriendManager
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 2746ffccd0f95df1fbe089be3bac18df
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: QuestManager
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: D:/Documents/Game Design/Year3/Iteration1/Build_LeftandRight/Prototype1.exe
+  playerPath: D:/Documents/Game Design/Year3/Iteration2/Build/Prototype1.exe
