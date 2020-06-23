@@ -20,6 +20,8 @@ public class DialogueManager : MonoBehaviour
     private string[] nextDialogue;
     public int sentCount = 0;
     public string npcCharName;
+    private Animator anim;
+    public AudioSource audio;
     //public int diaNum = 0;
     
     // Start is called before the first frame update
@@ -33,6 +35,16 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(Dialogue dialogue, GameObject npc)
     {
         Debug.Log("starting convo with" + dialogue.name);
+
+        if (npc.GetComponent<NPCManager>().anim != null)
+        {
+            anim = npc.GetComponent<NPCManager>().anim;
+        }
+
+        anim.SetTrigger("PromptTalk");
+        anim.SetTrigger("Talk");
+        audio.Play();
+        
 
         //sentCount = 0;
         speechbubble.SetActive(true);
@@ -302,6 +314,8 @@ public class DialogueManager : MonoBehaviour
             GameObject.Find(npcName).GetComponent<FriendManager>().count = 0;
             //GameObject.Find(npcName).GetComponent<FriendManager>().NextSentence();
         }
+        anim.SetTrigger("EndTalk");
+        anim.SetTrigger("Idle");
         player.GetComponent<CharacterController>().talking = false;
         //player.GetComponent<CharacterController>().timePressed = 0;
         speechbubble.SetActive(false);

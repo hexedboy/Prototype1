@@ -17,7 +17,8 @@ public class CharacterController : MonoBehaviour
     public GameObject nPC;
     public float timePressed = 0;
     [SerializeField] float nextTime =1f;
-    [SerializeField] CameraFollow cam;
+    //[SerializeField] CameraFollow cam;
+    [SerializeField] Animator anim;
     /*public float speed = 0f;
     [SerializeField] float maxSpeed = 10;
     [SerializeField] float acceleration = 10;*/
@@ -32,10 +33,19 @@ public class CharacterController : MonoBehaviour
 
     private void Update()
     {
-        
+        if (Input.GetKey("escape"))
+        {
+            Debug.Log("quit");
+            Application.Quit();
+        }
+        if (Input.GetKey("r"))
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
+
         if (Input.GetKey("z"))
         {
-            if (npcZone == true && nPC.GetComponent<NPCManager>().optLock == false ) //NPC INTERACTION
+            if (npcZone == true && nPC.GetComponent<NPCManager>().optLock == false) //NPC INTERACTION
             {
                 if (talking == false && timePressed == 0) //INITIAL TRIGGER
                 {
@@ -50,24 +60,64 @@ public class CharacterController : MonoBehaviour
                     FindObjectOfType<DialogueManager>().DisplayNextSentence();
                 }
             }
-            
+
             //Debug.Log(timePressed);
 
         }
-    }
 
+        if (this.GetComponent<Rigidbody>().velocity.x > 0)
+        {
+            // Debug.Log("running");
+
+            anim.SetTrigger("Run");
+            transform.rotation = Quaternion.Lerp(transform.rotation, new Quaternion(0, 90, 0, 100), 1f);
+        }
+        else if (this.GetComponent<Rigidbody>().velocity.x < 0)
+        {
+            //Debug.Log("running");
+
+            anim.SetTrigger("Run");
+            transform.rotation = Quaternion.Lerp(transform.rotation, new Quaternion(0, -90, 0, 100), 1f);
+        }
+        if (this.GetComponent<Rigidbody>().velocity.z > 0)
+        {
+            //Debug.Log("running");
+
+            anim.SetTrigger("Run");
+            transform.rotation = Quaternion.Lerp(transform.rotation, new Quaternion(0, 0, 0, 100), 1f);
+        }
+        else if (this.GetComponent<Rigidbody>().velocity.z < 0)
+        {
+            //Debug.Log("running");
+
+            anim.SetTrigger("Run");
+            this.transform.rotation = Quaternion.Lerp(transform.rotation, new Quaternion(0, -180, 0, 0), 1f);
+        }
+        else if (this.GetComponent<Rigidbody>().velocity.x == 0)
+        {
+            anim.SetTrigger("Idle");
+        }
+
+
+        //if (Input.GetKey(KeyCode.LeftArrow)) ||
+        // {
+        //     anim.SetTrigger("Run");
+        // }
+        // else if (Input.GetKeyUp(KeyCode.LeftArrow))
+        // {
+        //      anim.SetTrigger("Idle");
+        //  }
+
+    }
     void FixedUpdate()
     {
 
-        if (Input.GetKey("escape"))
-        {
-            Debug.Log("quit");
-            Application.Quit();
-        }
-        if (Input.GetKey("r"))
-        {
-            SceneManager.LoadScene("SampleScene");
-        }
+
+
+       
+
+
+      
 
 
         if (talking == false)
@@ -96,7 +146,7 @@ public class CharacterController : MonoBehaviour
                 if (right == true)
                 {
                     right = false;
-                    cam.frameboi = 0;
+                    //cam.frameboi = 0;
                 }
                 
             }
@@ -110,7 +160,7 @@ public class CharacterController : MonoBehaviour
                 if (left == true)
                 {
                     left = false;
-                    cam.frameboi = 0;
+                   // cam.frameboi = 0;
                 }
 
             }

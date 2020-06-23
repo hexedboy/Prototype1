@@ -12,6 +12,7 @@ public class NPCManager : MonoBehaviour
     public bool options = false;
     public bool optLock = false; //don't mess with this
     public bool item = false;
+    public Animator anim;
    // public bool hasFriend = false;
     
     // Start is called before the first frame update
